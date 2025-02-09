@@ -13,6 +13,6 @@ public abstract class BaseRepository<T> where T : class
     protected BaseRepository(IOptions<MongoDbConfiguration> mongoDbConfiguration)
     {
         _collection = new MongoClient(mongoDbConfiguration.Value.ConnectionString)
-          .GetDatabase(mongoDbConfiguration.Value.DatabaseName).GetCollection<T>(nameof(T));
+          .GetDatabase(mongoDbConfiguration.Value.DatabaseName).GetCollection<T>(typeof(T).Name);
     }
 }

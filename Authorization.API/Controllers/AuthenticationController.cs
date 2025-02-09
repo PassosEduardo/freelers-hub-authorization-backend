@@ -1,7 +1,9 @@
 ﻿using Authentication.API.Requests;
 using Authentication.API.Services.Interfaces;
 using Authentication.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Serialization;
 
 namespace Authorization.API.Controllers;
 
@@ -37,4 +39,8 @@ public class AuthenticationController : ControllerBase
 
         return Ok(result);
     }
+
+    [HttpGet]
+    [Authorize]
+    public async Task<ActionResult<bool>> Authenticate() => Ok(true);
 }
